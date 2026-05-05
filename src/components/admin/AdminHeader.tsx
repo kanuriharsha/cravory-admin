@@ -1,5 +1,8 @@
 import { useAuth } from '@/contexts/AuthContext';
+<<<<<<< HEAD
 import { useSystemMode } from '@/contexts/SystemModeContext';
+=======
+>>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
 import { SidebarTrigger } from '@/components/ui/sidebar';
 import { Button } from '@/components/ui/button';
 import {
@@ -11,6 +14,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+<<<<<<< HEAD
 import { Bell, LogOut, User, Shield, Store, Leaf } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { useNavigate, useLocation } from 'react-router-dom';
@@ -77,11 +81,23 @@ export function AdminHeader() {
 
       {/* Main Header Row */}
       <div className="flex items-center justify-between h-14 px-4">
+=======
+import { Bell, LogOut, User, Shield } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
+
+export function AdminHeader() {
+  const { adminEmail, logout } = useAuth();
+
+  return (
+    <header className="sticky top-0 z-40 h-16 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/60">
+      <div className="flex items-center justify-between h-full px-4">
+>>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
         <div className="flex items-center gap-2">
           <SidebarTrigger aria-label="Toggle sidebar" className="h-9 w-9 flex items-center justify-center text-lg">
             <span aria-hidden="true" className="select-none">☰</span>
           </SidebarTrigger>
           <div className="hidden md:flex items-center gap-2">
+<<<<<<< HEAD
             {mode === 'restaurants' ? (
               <>
                 <Shield className="h-4 w-4 text-orange-500" />
@@ -93,6 +109,10 @@ export function AdminHeader() {
                 <span className="text-sm font-medium text-muted-foreground">Vendor Control Panel — Authentic Foods</span>
               </>
             )}
+=======
+            <Shield className="h-4 w-4 text-orange-500" />
+            <span className="text-sm font-medium text-muted-foreground">Admin Control Panel</span>
+>>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
           </div>
         </div>
 
@@ -110,12 +130,16 @@ export function AdminHeader() {
             <DropdownMenuTrigger asChild>
               <Button variant="ghost" className="flex items-center gap-3 h-10 px-2">
                 <Avatar className="h-8 w-8">
+<<<<<<< HEAD
                   <AvatarFallback className={cn(
                     "text-white text-sm font-semibold",
                     mode === 'restaurants'
                       ? "bg-gradient-to-br from-orange-500 to-red-500"
                       : "bg-gradient-to-br from-amber-500 to-yellow-500"
                   )}>
+=======
+                  <AvatarFallback className="bg-gradient-to-br from-orange-500 to-red-500 text-white text-sm font-semibold">
+>>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
                     SA
                   </AvatarFallback>
                 </Avatar>
