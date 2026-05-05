@@ -26,6 +26,8 @@ import VendorProducts from "@/pages/vendor/VendorProducts";
 import VendorOrders from "@/pages/vendor/VendorOrders";
 import VendorEarnings from "@/pages/vendor/VendorEarnings";
 import VendorQuality from "@/pages/vendor/VendorQuality";
+//hi
+const s = "hi";
 const queryClient = new QueryClient();
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -49,14 +51,14 @@ function AppRoutes() {
     <Routes>
       {/* Redirect root to login */}
       <Route path="/" element={<Navigate to="/login" replace />} />
-      
+
       {/* Public login route */}
       <Route path="/login" element={
         <PublicRoute>
           <AdminLogin />
         </PublicRoute>
       } />
-      
+
       {/* Protected admin routes */}
       <Route path="/admin" element={
         <ProtectedRoute>
@@ -84,7 +86,7 @@ function AppRoutes() {
         <Route path="vendors/earnings" element={<VendorEarnings />} />
         <Route path="vendors/quality" element={<VendorQuality />} />
       </Route>
-      
+
       {/* Catch all */}
       <Route path="*" element={<NotFound />} />
     </Routes>

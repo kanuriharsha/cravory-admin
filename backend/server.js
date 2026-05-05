@@ -962,7 +962,6 @@ app.put('/api/settings', async (req, res) => {
   }
 });
 
-<<<<<<< HEAD
 // ==================== VENDOR SYSTEM (Authentic Foods) ====================
 // Completely independent from restaurant system
 // Uses separate collections: vendors, vendor_products, vendor_orders, vendor_earnings
@@ -1309,8 +1308,6 @@ app.post('/api/vendor/quality/warn/:vendorId', async (req, res) => {
 
 // ==================== END VENDOR SYSTEM ====================
 
-=======
->>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'OK', message: 'Server is running' });
