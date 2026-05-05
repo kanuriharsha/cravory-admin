@@ -18,7 +18,6 @@ import Settings from "@/pages/admin/Settings";
 import MenuItems from "@/pages/admin/MenuItems";
 import NotFound from "./pages/NotFound";
 
-<<<<<<< HEAD
 // Vendor System Pages — Completely independent
 import VendorDashboard from "@/pages/vendor/VendorDashboard";
 import VendorList from "@/pages/vendor/VendorList";
@@ -27,9 +26,6 @@ import VendorProducts from "@/pages/vendor/VendorProducts";
 import VendorOrders from "@/pages/vendor/VendorOrders";
 import VendorEarnings from "@/pages/vendor/VendorEarnings";
 import VendorQuality from "@/pages/vendor/VendorQuality";
-
-=======
->>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
 const queryClient = new QueryClient();
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -67,10 +63,7 @@ function AppRoutes() {
           <AdminLayout />
         </ProtectedRoute>
       }>
-<<<<<<< HEAD
         {/* Restaurant System Routes (unchanged) */}
-=======
->>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
         <Route index element={<Dashboard />} />
         <Route path="restaurants" element={<Restaurants />} />
         <Route path="restaurants/:id" element={<RestaurantDetail />} />
@@ -81,7 +74,6 @@ function AppRoutes() {
         <Route path="delivery-partners" element={<DeliveryPartners />} />
         <Route path="complaints" element={<Complaints />} />
         <Route path="settings" element={<Settings />} />
-<<<<<<< HEAD
 
         {/* Vendor System Routes — Completely independent */}
         <Route path="vendors" element={<VendorDashboard />} />
@@ -91,8 +83,6 @@ function AppRoutes() {
         <Route path="vendors/orders" element={<VendorOrders />} />
         <Route path="vendors/earnings" element={<VendorEarnings />} />
         <Route path="vendors/quality" element={<VendorQuality />} />
-=======
->>>>>>> 9eefa165519f5b993ddde62d369f864c278b0196
       </Route>
       
       {/* Catch all */}
