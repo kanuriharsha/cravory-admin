@@ -269,6 +269,7 @@ export default function VendorDetail() {
             <div className="space-y-2">
               <Label>Vendor Image</Label>
               // removed conflicts.
+              //super
               <div className="space-y-3">
                 <div className="flex gap-2">
                   <label className="flex-1 cursor-pointer">
