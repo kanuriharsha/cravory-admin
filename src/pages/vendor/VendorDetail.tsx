@@ -4,11 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
-<<<<<<< HEAD
 import { ArrowLeft, Loader2, MapPin, Phone, Mail, Star, Package, ShoppingBag, TrendingUp, Shield, Clock, AlertTriangle, Check, Ban, Pause, Bell, FileText, User, Activity, Edit } from 'lucide-react';
-=======
-import { ArrowLeft, Loader2, MapPin, Phone, Mail, Star, Package, ShoppingBag, TrendingUp, Shield, Clock, AlertTriangle, Check, Ban, Pause, Bell, FileText, User, Activity } from 'lucide-react';
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from '@/components/ui/dialog';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
@@ -26,15 +22,12 @@ export default function VendorDetail() {
   const [suspendReason, setSuspendReason] = useState('');
   const [warnDialog, setWarnDialog] = useState(false);
   const [warnMessage, setWarnMessage] = useState('');
-<<<<<<< HEAD
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
   const [imagePreview, setImagePreview] = useState<string>('');
   const [editFormData, setEditFormData] = useState({
     vendor_name: '', owner_name: '', phone: '', email: '',
     origin_location: '', origin_story: '', image: '',
   });
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 
   useEffect(() => { if (id) fetchVendor(); }, [id]);
 
@@ -50,7 +43,6 @@ export default function VendorDetail() {
   const handleSuspend = async () => { try { await vendorApiService.suspendVendor(id!, suspendReason); toast.success('Vendor suspended'); setSuspendDialog(false); setSuspendReason(''); fetchVendor(); } catch { toast.error('Failed'); } };
   const handleWarn = async () => { try { await vendorApiService.warnVendor(id!, warnMessage); toast.success('Warning sent'); setWarnDialog(false); setWarnMessage(''); } catch { toast.error('Failed'); } };
 
-<<<<<<< HEAD
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -115,8 +107,6 @@ export default function VendorDetail() {
     }
   };
 
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   const statusBadge = (s: string) => {
     const c: Record<string,string> = { active:'bg-green-100 text-green-700', pending:'bg-amber-100 text-amber-700', blocked:'bg-red-100 text-red-700', suspended:'bg-orange-100 text-orange-700' };
     return <Badge className={`${c[s]||'bg-gray-100 text-gray-700'} text-sm px-3 py-1`}>{s.toUpperCase()}</Badge>;
@@ -160,11 +150,7 @@ export default function VendorDetail() {
 
         <TabsContent value="identity" className="space-y-4">
           <div className="grid gap-4 md:grid-cols-2">
-<<<<<<< HEAD
             <Card><CardHeader><div className="flex items-center justify-between"><CardTitle className="text-base">Basic Information</CardTitle><Button size="sm" variant="outline" onClick={handleEditVendor}>Edit</Button></div></CardHeader><CardContent className="space-y-3">
-=======
-            <Card><CardHeader><CardTitle className="text-base">Basic Information</CardTitle></CardHeader><CardContent className="space-y-3">
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
               <div className="grid grid-cols-2 gap-3 text-sm">
                 <div><p className="text-muted-foreground">Vendor Name</p><p className="font-medium">{vendor.vendor_name}</p></div>
                 <div><p className="text-muted-foreground">Owner Name</p><p className="font-medium">{vendor.owner_name}</p></div>
@@ -262,7 +248,6 @@ export default function VendorDetail() {
       <Dialog open={suspendDialog} onOpenChange={setSuspendDialog}><DialogContent><DialogHeader><DialogTitle>Suspend Vendor</DialogTitle></DialogHeader><div className="space-y-3"><Label>Reason for Suspension</Label><Textarea value={suspendReason} onChange={e=>setSuspendReason(e.target.value)} placeholder="Enter reason..." rows={3} /></div><DialogFooter><Button variant="outline" onClick={()=>setSuspendDialog(false)}>Cancel</Button><Button className="bg-orange-500 hover:bg-orange-600 text-white" onClick={handleSuspend}>Suspend</Button></DialogFooter></DialogContent></Dialog>
       {/* Warn Dialog */}
       <Dialog open={warnDialog} onOpenChange={setWarnDialog}><DialogContent><DialogHeader><DialogTitle>Send Warning</DialogTitle></DialogHeader><div className="space-y-3"><Label>Warning Message</Label><Textarea value={warnMessage} onChange={e=>setWarnMessage(e.target.value)} placeholder="Enter warning..." rows={3} /></div><DialogFooter><Button variant="outline" onClick={()=>setWarnDialog(false)}>Cancel</Button><Button className="bg-amber-500 hover:bg-amber-600 text-white" onClick={handleWarn}>Send Warning</Button></DialogFooter></DialogContent></Dialog>
-<<<<<<< HEAD
 
       {/* Edit Vendor Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={setIsEditDialogOpen}>
@@ -283,6 +268,7 @@ export default function VendorDetail() {
             <div className="space-y-2"><Label>Origin Story</Label><Textarea value={editFormData.origin_story} onChange={e => setEditFormData({ ...editFormData, origin_story: e.target.value })} rows={3} /></div>
             <div className="space-y-2">
               <Label>Vendor Image</Label>
+              // removed conflicts.
               <div className="space-y-3">
                 <div className="flex gap-2">
                   <label className="flex-1 cursor-pointer">
@@ -304,8 +290,6 @@ export default function VendorDetail() {
           <DialogFooter><Button variant="outline" onClick={() => setIsEditDialogOpen(false)}>Cancel</Button><Button onClick={handleSaveEdit} className="bg-amber-500 hover:bg-amber-600 text-white">Save Changes</Button></DialogFooter>
         </DialogContent>
       </Dialog>
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
     </div>
   );
 }
