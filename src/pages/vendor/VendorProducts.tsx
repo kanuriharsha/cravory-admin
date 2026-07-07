@@ -27,10 +27,7 @@ export default function VendorProducts() {
   const [deleteId, setDeleteId] = useState<string | null>(null);
   const [assignDialog, setAssignDialog] = useState<{ productId: string; current: string[] } | null>(null);
   const [selectedVendors, setSelectedVendors] = useState<string[]>([]);
-<<<<<<< HEAD
   const [imagePreview, setImagePreview] = useState<string>('');
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   const [formData, setFormData] = useState({
     name: '', description: '', category: 'Sweets', region_tags: '', ingredients: '',
     shelf_life: '', packaging_type: 'Standard', storage_instructions: '',
@@ -40,7 +37,6 @@ export default function VendorProducts() {
   useEffect(() => { fetchProducts(); fetchVendors(); }, [categoryFilter, statusFilter]);
 
   const fetchProducts = async () => {
-<<<<<<< HEAD
     try {
       setLoading(true);
       const params: any = {};
@@ -99,13 +95,6 @@ export default function VendorProducts() {
       reader.readAsDataURL(file);
     }
   };
-=======
-    try { setLoading(true); const params: any = {}; if (categoryFilter !== 'all') params.category = categoryFilter; if (statusFilter !== 'all') params.status = statusFilter; if (searchQuery) params.search = searchQuery; const data = await vendorApiService.getProducts(params); setProducts(data as VendorProduct[]); } catch { toast.error('Failed to load products'); } finally { setLoading(false); }
-  };
-  const fetchVendors = async () => { try { const data = await vendorApiService.getVendors({ status: 'active' }); setVendors(data as Vendor[]); } catch { console.error('Failed to fetch vendors'); } };
-
-  const filtered = products.filter(p => p.name.toLowerCase().includes(searchQuery.toLowerCase()) || p.category.toLowerCase().includes(searchQuery.toLowerCase()));
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 
   const handleSave = async () => {
     if (!formData.name.trim() || !formData.shelf_life.trim() || !formData.price) { toast.error('Name, shelf life, and price are required'); return; }
@@ -121,17 +110,12 @@ export default function VendorProducts() {
   const handleToggle = async (id: string, current: string) => { try { await vendorApiService.toggleProduct(id, current === 'active' ? 'disabled' : 'active'); toast.success(`Product ${current === 'active' ? 'disabled' : 'enabled'}`); fetchProducts(); } catch { toast.error('Failed'); } };
   const handleAssignVendors = async () => { if (!assignDialog) return; try { await vendorApiService.assignVendorsToProduct(assignDialog.productId, selectedVendors); toast.success('Vendors assigned'); setAssignDialog(null); fetchProducts(); } catch { toast.error('Failed to assign vendors'); } };
 
-<<<<<<< HEAD
   const getAssignedVendorNames = (vendorIds: string[]) => {
     return vendorIds.map(id => vendors.find(v => v._id === id)?.vendor_name || 'Unknown').filter(Boolean);
   };
 
   const handleEdit = (p: VendorProduct) => { setEditingProduct(p); setFormData({ name: p.name, description: p.description, category: p.category, region_tags: (p.region_tags || []).join(', '), ingredients: (p.ingredients || []).join(', '), shelf_life: p.shelf_life, packaging_type: p.packaging_type, storage_instructions: p.storage_instructions, dispatch_time: p.dispatch_time, delivery_feasibility: p.delivery_feasibility, price: p.price.toString(), discounted_price: p.discounted_price?.toString() || '', image: p.image || '' }); setImagePreview(p.image || ''); setIsFormOpen(true); };
   const resetForm = () => { setFormData({ name: '', description: '', category: 'Sweets', region_tags: '', ingredients: '', shelf_life: '', packaging_type: 'Standard', storage_instructions: '', dispatch_time: '24 hours', delivery_feasibility: '2-4 days', price: '', discounted_price: '', image: '' }); setEditingProduct(null); setImagePreview(''); };
-=======
-  const handleEdit = (p: VendorProduct) => { setEditingProduct(p); setFormData({ name: p.name, description: p.description, category: p.category, region_tags: (p.region_tags || []).join(', '), ingredients: (p.ingredients || []).join(', '), shelf_life: p.shelf_life, packaging_type: p.packaging_type, storage_instructions: p.storage_instructions, dispatch_time: p.dispatch_time, delivery_feasibility: p.delivery_feasibility, price: p.price.toString(), discounted_price: p.discounted_price?.toString() || '', image: p.image || '' }); setIsFormOpen(true); };
-  const resetForm = () => { setFormData({ name: '', description: '', category: 'Sweets', region_tags: '', ingredients: '', shelf_life: '', packaging_type: 'Standard', storage_instructions: '', dispatch_time: '24 hours', delivery_feasibility: '2-4 days', price: '', discounted_price: '', image: '' }); setEditingProduct(null); };
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 
   return (
     <div className="space-y-4 md:space-y-6">
@@ -148,14 +132,11 @@ export default function VendorProducts() {
         </div>
       </div>
 
-      {/* Desktop Table */}
+      {/* Desktop Table */}  
+      /*Hello hi*/ 
       <div className="border rounded-lg overflow-hidden">
         <Table>
-<<<<<<< HEAD
           <TableHeader><TableRow><TableHead>Product</TableHead><TableHead>Category</TableHead><TableHead>Shelf Life</TableHead><TableHead>Price</TableHead><TableHead>Assigned Vendors</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
-=======
-          <TableHeader><TableRow><TableHead>Product</TableHead><TableHead>Category</TableHead><TableHead>Shelf Life</TableHead><TableHead>Price</TableHead><TableHead>Vendors</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
           <TableBody>
             {loading ? <TableRow><TableCell colSpan={7} className="text-center py-8"><Loader2 className="h-6 w-6 animate-spin mx-auto" /></TableCell></TableRow> : filtered.length === 0 ? <TableRow><TableCell colSpan={7} className="text-center py-12 text-muted-foreground"><Package className="h-10 w-10 mx-auto mb-2 opacity-30" />No products found</TableCell></TableRow> : filtered.map(p => (
               <TableRow key={p._id} className="hover:bg-muted/40">
@@ -163,7 +144,6 @@ export default function VendorProducts() {
                 <TableCell><Badge variant="outline">{p.category}</Badge></TableCell>
                 <TableCell className="text-sm">{p.shelf_life}</TableCell>
                 <TableCell><div className="font-medium">₹{p.price}{p.discounted_price && <span className="text-xs text-muted-foreground line-through ml-1">₹{p.discounted_price}</span>}</div></TableCell>
-<<<<<<< HEAD
                 <TableCell>
                   <div className="flex flex-wrap gap-1">
                     {(p.assigned_vendors || []).length === 0 ? (
@@ -175,9 +155,6 @@ export default function VendorProducts() {
                     )}
                   </div>
                 </TableCell>
-=======
-                <TableCell><Badge variant="secondary">{(p.assigned_vendors || []).length} vendors</Badge></TableCell>
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
                 <TableCell><Badge className={p.status === 'active' ? 'bg-green-100 text-green-700' : 'bg-gray-100 text-gray-700'}>{p.status}</Badge></TableCell>
                 <TableCell className="text-right">
                   <DropdownMenu><DropdownMenuTrigger asChild><Button variant="ghost" size="icon"><MoreHorizontal className="h-4 w-4" /></Button></DropdownMenuTrigger>
@@ -221,7 +198,6 @@ export default function VendorProducts() {
               <div className="space-y-2"><Label>Dispatch Time</Label><Input value={formData.dispatch_time} onChange={e => setFormData({ ...formData, dispatch_time: e.target.value })} /></div>
               <div className="space-y-2"><Label>Delivery Feasibility</Label><Input value={formData.delivery_feasibility} onChange={e => setFormData({ ...formData, delivery_feasibility: e.target.value })} /></div>
             </div>
-<<<<<<< HEAD
             <div className="space-y-2">
               <Label>Product Image</Label>
               <div className="space-y-3">
@@ -241,8 +217,6 @@ export default function VendorProducts() {
                 <Input value={formData.image} onChange={e => setFormData({ ...formData, image: e.target.value })} placeholder="https://..." />
               </div>
             </div>
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
           </div>
           <DialogFooter><Button variant="outline" onClick={() => setIsFormOpen(false)}>Cancel</Button><Button onClick={handleSave} className="bg-gradient-to-r from-amber-500 to-yellow-500 hover:from-amber-600 hover:to-yellow-600 text-white">{editingProduct ? 'Update' : 'Create'} Product</Button></DialogFooter>
         </DialogContent>
