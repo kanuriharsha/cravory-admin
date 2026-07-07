@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import { MongoClient, ObjectId } from 'mongodb';
+<<<<<<< HEAD
 import dns from "dns";
 
 try {
@@ -10,6 +11,8 @@ try {
 } catch (e) {
   console.warn('[dns] could not set resolver servers:', e && e.message ? e.message : e);
 }
+=======
+>>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 
 dotenv.config();
 
