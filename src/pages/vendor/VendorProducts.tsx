@@ -133,7 +133,7 @@ export default function VendorProducts() {
       </div>
 
       {/* Desktop Table */}  
-      /*Hello hi*/ 
+      
       <div className="border rounded-lg overflow-hidden">
         <Table>
           <TableHeader><TableRow><TableHead>Product</TableHead><TableHead>Category</TableHead><TableHead>Shelf Life</TableHead><TableHead>Price</TableHead><TableHead>Assigned Vendors</TableHead><TableHead>Status</TableHead><TableHead className="text-right">Actions</TableHead></TableRow></TableHeader>
