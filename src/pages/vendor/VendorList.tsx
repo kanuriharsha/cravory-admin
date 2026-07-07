@@ -24,10 +24,7 @@ export default function VendorList() {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false);
   const [loading, setLoading] = useState(true);
   const [generatedCreds, setGeneratedCreds] = useState<{id:string,pass:string}|null>(null);
-<<<<<<< HEAD
   const [imagePreview, setImagePreview] = useState<string>('');
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   const [formData, setFormData] = useState({
     vendor_name: '', owner_name: '', phone: '', email: '',
     full_address: '', city: '', state: '', pincode: '',
@@ -36,10 +33,7 @@ export default function VendorList() {
     max_orders_per_day: '10', preparation_time: '24 hours',
     packaging_type: 'Standard', shipping_regions: '',
     dispatch_sla: '2-4 days', courier_compatibility: '',
-<<<<<<< HEAD
     image: '',
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   });
 
   useEffect(() => { fetchVendors(); }, [statusFilter, regionFilter]);
@@ -56,34 +50,25 @@ export default function VendorList() {
     } catch (error) {
       console.error('Error fetching vendors:', error);
       toast.error('Failed to load vendors');
-<<<<<<< HEAD
     } finally {
       setLoading(false);
     }
-=======
-    } finally { setLoading(false); }
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   };
 
   const filtered = vendors.filter(v => {
     const q = searchQuery.toLowerCase();
-<<<<<<< HEAD
     const name = (v.vendor_name || '').toString();
     const origin = (v.origin_location || '').toString();
     const specialties = Array.isArray(v.specialty_items) ? v.specialty_items : [];
     return name.toLowerCase().includes(q)
       || origin.toLowerCase().includes(q)
       || specialties.join(' ').toLowerCase().includes(q);
-=======
-    return v.vendor_name.toLowerCase().includes(q) || v.origin_location.toLowerCase().includes(q) || (v.specialty_items||[]).join(' ').toLowerCase().includes(q);
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   });
 
   const handleApprove = async (id: string) => { try { await vendorApiService.approveVendor(id); toast.success('Vendor approved'); fetchVendors(); } catch { toast.error('Failed to approve vendor'); } };
   const handleBlock = async (id: string) => { try { await vendorApiService.blockVendor(id); toast.success('Vendor blocked'); fetchVendors(); } catch { toast.error('Failed to block vendor'); } };
   const handleUnblock = async (id: string) => { try { await vendorApiService.unblockVendor(id); toast.success('Vendor unblocked'); fetchVendors(); } catch { toast.error('Failed to unblock vendor'); } };
 
-<<<<<<< HEAD
   const handleImageUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
@@ -112,8 +97,6 @@ export default function VendorList() {
     }
   };
 
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
   const handleSaveVendor = async () => {
     if (!formData.vendor_name.trim() || !formData.owner_name.trim() || !formData.phone.trim()) {
       toast.error('Please fill all required fields'); return;
@@ -128,10 +111,7 @@ export default function VendorList() {
         category: formData.category, delivery_coverage: formData.delivery_coverage,
         capacity: { max_orders_per_day: parseInt(formData.max_orders_per_day)||10, preparation_time: formData.preparation_time, packaging_type: formData.packaging_type, shelf_life_awareness: true },
         logistics: { shipping_regions: formData.shipping_regions.split(',').map(s=>s.trim()).filter(Boolean), dispatch_sla: formData.dispatch_sla, courier_compatibility: formData.courier_compatibility.split(',').map(s=>s.trim()).filter(Boolean) },
-<<<<<<< HEAD
         image: formData.image,
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
       };
       const result = await vendorApiService.createVendor(vendorData) as any;
       setGeneratedCreds({ id: result.login?.login_id || result.vendor_name, pass: result.login?.password || 'generated' });
@@ -140,11 +120,7 @@ export default function VendorList() {
     } catch { toast.error('Failed to create vendor'); }
   };
 
-<<<<<<< HEAD
   const resetForm = () => { setFormData({ vendor_name:'', owner_name:'', phone:'', email:'', full_address:'', city:'', state:'', pincode:'', origin_location:'', origin_story:'', specialty_items:'', category:'Traditional', delivery_coverage:'regional', max_orders_per_day:'10', preparation_time:'24 hours', packaging_type:'Standard', shipping_regions:'', dispatch_sla:'2-4 days', courier_compatibility:'', image:'' }); setGeneratedCreds(null); setImagePreview(''); };
-=======
-  const resetForm = () => { setFormData({ vendor_name:'', owner_name:'', phone:'', email:'', full_address:'', city:'', state:'', pincode:'', origin_location:'', origin_story:'', specialty_items:'', category:'Traditional', delivery_coverage:'regional', max_orders_per_day:'10', preparation_time:'24 hours', packaging_type:'Standard', shipping_regions:'', dispatch_sla:'2-4 days', courier_compatibility:'' }); setGeneratedCreds(null); };
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
 
   const statusBadge = (s: string) => {
     const c: Record<string,string> = { active:'bg-green-100 text-green-700', pending:'bg-amber-100 text-amber-700', blocked:'bg-red-100 text-red-700', suspended:'bg-orange-100 text-orange-700' };
@@ -251,7 +227,6 @@ export default function VendorList() {
                 </div>
                 <div className="space-y-2"><Label>Specialty Items (comma separated)</Label><Input value={formData.specialty_items} onChange={e=>setFormData({...formData, specialty_items:e.target.value})} placeholder="e.g., Kakinada Kaja, Pootharekulu, Putharekulu" /></div>
                 <div className="space-y-2"><Label>Origin Story</Label><Textarea value={formData.origin_story} onChange={e=>setFormData({...formData, origin_story:e.target.value})} placeholder="Brief history and speciality of this vendor..." rows={2} /></div>
-<<<<<<< HEAD
                 <div className="space-y-2">
                   <Label>Vendor Image</Label>
                   <div className="space-y-3">
@@ -271,8 +246,7 @@ export default function VendorList() {
                     <Input value={formData.image} onChange={e => setFormData({ ...formData, image: e.target.value })} placeholder="https://..." />
                   </div>
                 </div>
-=======
->>>>>>> 9e36ecdcb52c5040ba66e8c5591e80300d231fbe
+                // removed conflicts.
                 <div className="grid grid-cols-2 gap-4">
                   <div className="space-y-2"><Label>Delivery Coverage</Label><Select value={formData.delivery_coverage} onValueChange={(v: 'regional'|'pan_india')=>setFormData({...formData, delivery_coverage:v})}><SelectTrigger><SelectValue /></SelectTrigger><SelectContent><SelectItem value="regional">Regional</SelectItem><SelectItem value="pan_india">Pan India</SelectItem></SelectContent></Select></div>
                   <div className="space-y-2"><Label>Max Orders/Day</Label><Input type="number" value={formData.max_orders_per_day} onChange={e=>setFormData({...formData, max_orders_per_day:e.target.value})} /></div>
